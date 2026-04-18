@@ -1,16 +1,14 @@
 import { Routes, Route } from "react-router-dom"
-// import Login from "./components/Login"
-// import Dashboard from "./components/Dashboard"
+import Login from "./components/login"
+import RouteOptimizer from "./components/RouteOptimizer"
 import DeliveryForm from "./components/DeliveryForm"
 
 export default function App() {
   return (
-    <div className="bg-slate-900 min-h-screen text-white">
-      <Routes>
-        {/* <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} /> */}
-         <Route path="/add-delivery" element={<DeliveryForm />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+ <Route path="/optimize" element={<RouteOptimizer />} />
+      <Route path="/delivery" element={<DeliveryForm />} />
+    </Routes>
   )
 }
