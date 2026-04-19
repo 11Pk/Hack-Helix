@@ -1,7 +1,20 @@
-<<<<<<< HEAD
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-=======
-@import "tailwindcss";
->>>>>>> e45129510be5489196e5ac5905c31b96c6643d7b
+
+/* Leaflet: hide default border on HTML marker icons */
+.leaflet-div-icon.delivery-leaflet-pin-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.visited {
+  animation: pulseGlow 0.6s ease;
+}
