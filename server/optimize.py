@@ -91,7 +91,7 @@ def solve_tsp(dist):
     return route[::-1]
 
 # ---------- MAIN API ----------
-@app.post("/optimize-route")
+
 def optimize_route(data: RouteRequest):
 
     locations = [data.rider] + data.stops

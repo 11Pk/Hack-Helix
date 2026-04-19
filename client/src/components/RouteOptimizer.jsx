@@ -93,12 +93,56 @@ export default function RouteOptimizer() {
     return <div className="text-white p-6">No data received</div>
   }
 
-  const { matrix } = data
+  const { matrix, stopPredictions = [], rider } = data
 
   return (
     <div className="min-h-screen bg-slate-900 text-white p-6">
 
       <h1 className="text-xl mb-6">Optimized Route (DP)</h1>
+
+      {rider && (
+        <p className="mb-4 text-slate-300">
+          Rider: <span className="text-white">{rider}</span>
+        </p>
+      )}
+
+      {stopPredictions.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-lg mb-2">ML predictions (per stop)</h2>
+          <div className="overflow-x-auto rounded border border-slate-600">
+            <table className="min-w-full text-sm">
+              <thead>
+                <tr className="bg-slate-800 text-left">
+                  <th className="px-3 py-2">Address</th>
+                  <th className="px-3 py-2">Customer</th>
+                  <th className="px-3 py-2">Time</th>
+                  <th className="px-3 py-2">Success</th>
+                  <th className="px-3 py-2">Failure</th>
+                  <th className="px-3 py-2">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stopPredictions.map((row) => (
+                  <tr key={row.id} className="border-t border-slate-600">
+                    <td className="px-3 py-2">{row.address}</td>
+                    <td className="px-3 py-2">{row.customerId}</td>
+                    <td className="px-3 py-2">{row.time}</td>
+                    <td className="px-3 py-2">
+                      {row.prediction?.success_probability ?? "—"}
+                    </td>
+                    <td className="px-3 py-2">
+                      {row.prediction?.failure_probability ?? "—"}
+                    </td>
+                    <td className="px-3 py-2 text-red-400">
+                      {row.error || ""}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* ROUTE */}
       <div className="mb-6">
